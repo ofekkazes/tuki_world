@@ -1,0 +1,266 @@
+﻿<%@ Master Language="C#" %>
+
+<!DOCTYPE html >
+
+<script runat="server">
+
+</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>עולם התוכים</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <link rel="stylesheet" type="text/css" href="Styles/StyleSheet.css" />
+
+    <script type="text/javascript">
+        function checkLogin(that) {
+            if (checkUserName1(that.userName) == true && checkPassword1(that.passWord) == true)
+                return true;
+            return false;
+        }
+        function checkUserName1(that) {
+            var usr = that.value;
+            if (usr.length == "") {
+                alert("אנא מלא/י שם משתמש");
+                that.select();
+                return false;
+            }
+            if (usr.length < 3 || usr.length > 21) {
+                alert("שם משתמש חייב להיות בין 4-21 תווים");
+                that.select();
+                return false;
+            }
+            return true;
+        }
+        function checkPassword1(that) {
+            var pass = that.value;
+            if (pass.length == "") {
+                alert("אנא מלא/י סיסמה");
+                that.select();
+                return false;
+            }
+            if (pass.length < 2 || pass.length > 21) {
+                alert("סיסמה צריכה להיות בנויה מ 3-21 תווים");
+                that.select();
+                return false;
+            }
+            return true; 
+        }
+
+    </script>
+
+    
+
+    <script type="text/javascript">
+        function init() {
+            timeDisplay = document.createTextNode("");
+            document.getElementById("clock").appendChild(timeDisplay);
+        }
+
+        function updateClock() {
+            var currentTime = new Date();
+
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+            var currentSeconds = currentTime.getSeconds();
+
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+            currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+
+            // Compose the string for display
+            var currentTimeString = "שעה: " + currentHours + ":" + currentMinutes + ":" + currentSeconds;
+
+            // Update the time display
+            document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+        }
+
+    </script>
+    <script type="text/javascript">
+        i = 0;
+        var speed = 1;
+        function scroll() {
+            i = i + speed;
+            var div = document.getElementById("news");
+            div.scrollTop = i;
+            if (i > div.scrollHeight - 160) { i = 0; }
+            t1 = setTimeout("scroll()", 50);
+        }
+</script>
+
+</head>
+<body onload="updateClock(); setInterval('updateClock()', 1000 ); scroll();" dir="rtl">
+    <a id="top"></a>
+    <table style="width: 100%;">
+        <tr><%-- ראש האתר --%>
+            <td style="vertical-align: top;"><%-- טופס משתמשים --%>
+                <p>שלום <%=Session["users"] %></p>
+                <%if(Session["users"] == "אורח")//אם המתמש הוא אורח
+                  { %>
+                    <form name="login" action="checkuser.aspx" method="post" onsubmit="return checkLogin(this);" style="margin-right: 3px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <p>שם משתמש: </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="userName" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>סיסמה: </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="password" name="passWord" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" value="שלח" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>עוד אין לך משתמש באתר?<br /> <a href="register.aspx">הירשם עכשיו</a></p>
+                                    
+                                </td>
+                            </tr>
+                            <%if (Session["error"] == "yes")//אם נתון אחד לא נכון או לא קיים
+                              {%>
+                                <tr>
+                                    <td>
+                                        <p>שם משתמש או סיסמה לא נכונים, אנא נסו שוב</p>
+                                    </td>
+                                </tr>
+                              <%
+                                  Session["error"] = "no";
+                              } %>
+                        </table>
+
+                    </form>
+                <%}
+                  else//אם הוא לא אורח
+                  {
+                      if (Session["users"] == "admin")// אם הוא מנהל
+                      {%>
+                        <table>
+                            <tr>
+                                <td>
+                                    <a href="adminmenu.aspx">דף ניהול</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                      <%}
+                      else//אם הוא לא מנהל כלומר משתמש פשוט
+                      {%>
+                          <table>
+                              <tr>
+                                  <td>
+                                      <a href="usermenu.aspx">תפריט משתמש</a>
+                                  </td>
+                              </tr>
+                          </table>
+                      <%}%>
+                      <a href="logout.aspx">התנתק</a>  
+                  <%} %>
+            </td>
+            <td style="text-align: center; vertical-align: middle;"><%-- לוגו --%>
+                <img src="Pics/Logo8.jpg" alt="עולם התוכים" style="height:  105px;" /><%-- לוגו האתר --%>
+            </td>
+            <td style="text-align: center; position: static; font-size: x-large; vertical-align: middle;"><%-- שעה ותאריך --%>
+
+                <script type="text/javascript">
+                    var currentTime = new Date();
+                    var currentDay = currentTime.getUTCDate();
+                    var currentMonth = currentTime.getMonth() + 1;
+                    var currentYear = currentTime.getFullYear();
+                    currentDay = (currentDay < 10 ? "0" : "") + currentDay;
+                    currentMonth = (currentMonth < 10 ? "0" : "") + currentMonth;
+                    var currentDateString = currentDay + "/" + currentMonth + "/" + currentYear;
+                    document.write("תאריך: " + currentDateString);
+                </script>
+                <div>
+                    <span id="clock">&nbsp;</span>
+                </div>
+            </td>
+        </tr>
+        <tr><%-- תפריט אופקי --%>
+            <td colspan="3">
+                <div class="menuFirst">
+                    <table id="menu">
+                        <tr>
+                            <td>
+                                <a href="Default.aspx">דף בית</a>
+                            </td>
+                            <%if(Session["users"]=="אורח"){%>
+                            <td>
+                                <a href="register.aspx">הרשמה</a>
+                            </td>
+                            <%}%>
+                            <td>
+                                <a href="login.aspx">התחברות</a>
+                            </td>
+                            <td>
+                                <a href="categories.aspx">סוגי תוכים</a>
+                            </td>
+                            <td>
+                                <a href="sirtonim.aspx">סרטונים מצחיקים</a>
+                            </td>
+                            <td>
+                                <a href="Pictures.aspx">תמונות</a>
+                            </td>
+                            <%if(Session["users"]=="admin"){ %>
+                            <td>
+                                <a href="default-pattern.aspx">צור עמוד לציפור</a>
+                            </td>
+                            <%} %>
+                            <td>
+                                <a href="mailto:ofekkazes2@gmail.com?Subject=צרו%20קשר">צרו קשר</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+        <tr><%-- גוף האתר --%>
+            <td style="width:  15%;"><%-- תפריט אנוכי --%>
+                
+            </td>
+            <td style="width: 85%; margin-top: 0px; vertical-align: top;"><%-- דפי האתר --%>
+                <br />
+                <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+
+                </asp:ContentPlaceHolder>
+                <br />
+            </td>
+        </tr>
+        <tr style="width: 100%;"><%-- תחתית האתר --%>
+            <td colspan="2">
+                <h4>
+                    עד עכשיו ביקרו באתר <%=Application["counter"] %> מבקרים
+                </h4>
+                <span style="text-align: center;">
+                    &copy;כל הזכויות שמורות לאופק קזס&copy;
+                </span>
+                <a href="#top">עלה למעלה</a>
+            </td>
+        </tr>
+
+    </table>
+
+</body>
+</html>
+

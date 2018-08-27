@@ -1,0 +1,175 @@
+﻿/*CSS Reset*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    padding: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    margin-left: 0;
+    margin-right: 0px;
+    margin-top: 0;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 0 0;
+}
+    
+/*end css reset*/  
+
+
+body {
+    background-color:#b4dee6;
+    font-style: normal; 
+    font-family: Arial, 'Times New Roman', Candara;
+    text-decoration: none;
+}
+a {
+    color: Blue;
+}
+#menu 
+{
+	background: #484848 url('/Pics/background1.gif');
+	/*float: right;*/
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background-repeat: no-repeat;
+	text-align:center;
+}
+
+.menu td {
+	/*float: right;*/
+	font: 67.5% Arial, "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+    background-image: url('/Pics/background1.gif');
+	
+	
+}
+#menu a {
+	color: #ccc;
+	display: block;
+	/*float: right;*/
+	margin: 0 0px 0 0;
+	padding: 8px 12px;
+	text-decoration: none;
+	text-align:center;
+    background-image: url('/Pics/background1.gif');
+}
+#menu a:hover {
+	background: #3399FF;
+	color: #fff;
+	/*padding-bottom: 8px;*/
+    
+
+}
+
+#menuW
+{
+    padding: 0;
+	margin: 0;
+	height: 39px;
+	margin-right: 1em;
+	list-style: none;
+	background-repeat: no-repeat;
+	font-family: Arial, 'Times New Roman', Candara;
+    float: none;
+    text-decoration: none;
+}
+.outer a, .outer div, .outer td, .outer tr, .outer body{
+	margin: 0;
+	padding: 0;
+	font-family:  Arial, Verdana, Helvetica, sans-serif;
+}
+div.menu{
+
+}
+div.menu ul{
+	list-style: none;
+	text-indent: 0px;
+
+}
+div.menu td{
+	margin-top: 3px;
+}
+div.menu a{
+	font: 12px Verdana;
+	padding: 4px;
+	color: #646464;
+	display:block;
+	padding: 6px 30px;
+	/*height: 20px;*/
+	text-decoration: none;
+	background: url('Pics/background1.gif');
+}
+div.menu a:hover {
+	background: #3399FF url('Pics/background1.gif') right no-repeat;
+}
+.menuFirst
+{
+    text-align: center;
+}
+.menuSecond {
+}
+.Pic-S {
+    text-align: center;
+}
+#categories
+{
+    width: 200px;
+    height: 50px;
+    background-color: #20B2AA;
+    text-align: center;
+}
+#categories td
+{
+    border: 1px solid blue;
+    width:200px;
+    height: 50px;
+    background-color:#20B2AA;
+    text-align: center;
+}
+#categories h1
+{
+    text-align: center;
+    font-size: 16px;
+	display:block;
+	padding: 6px;
+	/*background: url('Pics/background1.jpg');*/
+    color: #000;
+    height: 100%;
+    width: 100%;
+}
+#categories a
+{
+    text-align: center;
+	font: 16px Arial;
+	display:block;
+	padding: 6px;
+	text-decoration: none;
+	/*background: url('Pics/background1.jpg');*/
+    color: #000;
+    height: 100%;
+    width: 100%;
+}
+#categories a:hover {
+	background: #3399FF;
+	/*padding-bottom: 8px;*/
+	color: #fff;
+    width:200px;
+}
